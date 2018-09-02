@@ -15,7 +15,7 @@
 
 ### Install Plugin
 
-	Download Jar file under dist directory and add in burpsuite
+	Download Jar https://github.com/d3vilbug/HackBar/releases and add in burpsuite
 
 ### Tested on
 - Burpsuite 1.7.36
