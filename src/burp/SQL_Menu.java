@@ -166,7 +166,7 @@ class MenuItemListener implements ActionListener {
         String action = e.getActionCommand();
         byte[] newRequest = do_sql_op(request, selectString, action, selectedIndex);
         req.setRequest(newRequest);
-        JOptionPane.showMessageDialog(null, action + " --> " + selectedIndex[0] + " - " + selectedIndex[1] + " -- " + selectString);
+//        JOptionPane.showMessageDialog(null, action + " --> " + selectedIndex[0] + " - " + selectedIndex[1] + " -- " + selectString);
         
     }
     
