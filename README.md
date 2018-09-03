@@ -22,4 +22,10 @@
 - Windows 7/8.1/10
 - Kali linux (2013.3)
 
+### Upcoming Features/Modules
+- XSS payload
+- SQLi payload (Error Based + WAF + MSSQL ....)
+- Reverse Shell Code snippets
+- Decoder/Encoder
+- LFI payloads
 
