@@ -5,9 +5,13 @@
 
 **java based Burpsuite Plugin**
 
-<img src="http://i.imgur.com/OZR3O6Y.png" />
+<img src="https://i.imgur.com/j9T9uEU.png" />
 
-<img src="http://i.imgur.com/oToVRWd.png" />
+<img src="https://i.imgur.com/wn21OTe.png" />
+
+<img src="https://i.imgur.com/8NC88fK.png" />
+
+<img src="https://i.imgur.com/Nm8dnBL.png" />
 
 ### Requirements
 - Burpsuite
