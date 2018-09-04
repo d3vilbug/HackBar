@@ -28,4 +28,6 @@
 - Reverse Shell Code snippets
 - Decoder/Encoder
 - LFI payloads
-
+- XXE
+- RCE
+- Mini Webshells
