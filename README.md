@@ -1,6 +1,6 @@
 # HackBar (Burpsuite Plugin)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=gh&type=0.1&v=0.1&x2=0)](http://badge.fury.io/gh/boennemann%2Fbadges)
+[![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=gh&type=0.2&v=0.2&x2=0)](http://badge.fury.io/gh/boennemann%2Fbadges)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
 **java based Burpsuite Plugin**
@@ -29,6 +29,8 @@
 ### Upcoming Features/Modules
 - XSS payload
 - SQLi payload (Error Based + WAF + MSSQL ....)
+- SQLi Admin bypass Queries
+- WAF bypass (SQLi)
 - Reverse Shell Code snippets
 - Decoder/Encoder
 - LFI payloads
