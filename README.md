@@ -19,21 +19,21 @@
 
 ### Install Plugin
 
-	Download Jar https://github.com/d3vilbug/HackBar/releases and add in burpsuite
+	Download Jar from `https://github.com/d3vilbug/HackBar/releases` and add in burpsuite
 
 ### Tested on
 - Burpsuite 1.7.36
 - Windows 7/8.1/10
-- Kali linux (2013.3)
+- Kali linux (2018.3)
 
 ### Upcoming Features/Modules
-- XSS payload
-- SQLi payload (Error Based + WAF + MSSQL ....)
-- SQLi Admin bypass Queries
+- XSS payloads (from OWASP)
+- SQLi payloads (Error Based + WAF + MSSQL ....)
+- SQLi Admin Panel bypass (True / False) Queries
+- RCE payloads
 - WAF bypass (SQLi)
-- Reverse Shell Code snippets
-- Decoder/Encoder
 - LFI payloads
-- XXE
-- RCE
-- Mini Webshells
+- Reverse Shell Code snippets
+- Encoder / Decoder
+- XXE payloads
+- Mini Webshells (in snippets)
