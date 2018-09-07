@@ -17,7 +17,7 @@
 - Burpsuite
 - Java
 
-### Install Plugin
+### Download
 
 	Download Jar from `https://github.com/d3vilbug/HackBar/releases` and add in burpsuite
 
@@ -37,3 +37,10 @@
 - Encoder / Decoder
 - XXE payloads
 - Mini Webshells (in snippets)
+=======
+- XXE
+- RCE
+- Mini Webshells
+
+### Greet
+- An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
