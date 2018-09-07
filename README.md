@@ -19,12 +19,12 @@
 
 ### Download
 
-	Download Jar https://github.com/d3vilbug/HackBar/releases and add in burpsuite
+	Download Jar 'https://github.com/d3vilbug/HackBar/releases' and add in burpsuite
 
 ### Tested on
 - Burpsuite 1.7.36
 - Windows 7/8.1/10
-- Kali linux (2013.3)
+- Kali linux (2018.3)
 
 ### Upcoming Features/Modules
 - XSS payload
@@ -34,9 +34,10 @@
 - Reverse Shell Code snippets
 - Decoder/Encoder
 - LFI payloads
-- XXE
+- XXE 
 - RCE
 - Mini Webshells
+- Simulate Attack (Automatically test complete cheat sheet with one click)
 
 ### Greet
 - An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
