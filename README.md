@@ -40,4 +40,4 @@
 - Simulate Attack (Automatically test complete cheat sheet with one click)
 
 ### Greet
-- An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
+- An0n 3xPloiTeR https://github.com/Anon-Exploiter for SQLi && XSS payloads 
