@@ -19,7 +19,7 @@
 
 ### Download
 
-	Download Jar from `https://github.com/d3vilbug/HackBar/releases` and add in burpsuite
+	Download Jar 'https://github.com/d3vilbug/HackBar/releases' and add in burpsuite
 
 ### Tested on
 - Burpsuite 1.7.36
@@ -27,20 +27,17 @@
 - Kali linux (2018.3)
 
 ### Upcoming Features/Modules
-- XSS payloads (from OWASP)
-- SQLi payloads (Error Based + WAF + MSSQL ....)
-- SQLi Admin Panel bypass (True / False) Queries
-- RCE payloads
+- XSS payload
+- SQLi payload (Error Based + WAF + MSSQL ....)
+- SQLi Admin bypass Queries
 - WAF bypass (SQLi)
-- LFI payloads
 - Reverse Shell Code snippets
-- Encoder / Decoder
-- XXE payloads
-- Mini Webshells (in snippets)
-=======
-- XXE
+- Decoder/Encoder
+- LFI payloads
+- XXE 
 - RCE
 - Mini Webshells
+- Simulate Attack (Automatically test complete cheat sheet with one click)
 
 ### Greet
-- An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
+- An0n 3xPloiTeR https://github.com/Anon-Exploiter for SQLi && XSS payloads 
