@@ -39,5 +39,6 @@
 - Mini Webshells
 - Simulate Attack (Automatically test complete cheat sheet with one click)
 
-### Greet
+### Greets
 - An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
+- PayloadsAllTheThings https://github.com/swisskyrepo/PayloadsAllTheThings/

@@ -37,14 +37,14 @@ public class BurpExtender implements IBurpExtender, IContextMenuFactory {
         this.menu_list = new ArrayList();
         this.Hack_Bar_Menu = new JMenu(this.MenuName);
         this.Hack_Bar_Menu.add(new SQL_Menu(this));
+        this.Hack_Bar_Menu.add(new SQL_Error(this));
         this.Hack_Bar_Menu.add(new SQli_LoginBypass(this));
         this.Hack_Bar_Menu.add(new XSS_Menu(this));
         this.Hack_Bar_Menu.add(new LFI_Menu(this));
         this.Hack_Bar_Menu.add(new XXE_Menu(this));
-        this.Hack_Bar_Menu.add(new RCE_Menu(this));
         this.Hack_Bar_Menu.add(new WebShell_Menu(this));
         this.Hack_Bar_Menu.add(new Reverse_Shell_Menu(this));
-        this.Hack_Bar_Menu.add(new Decoder_Encoder_Menu(this));
+//        this.Hack_Bar_Menu.add(new Decoder_Encoder_Menu(this));
         
         
         this.callbacks.setExtensionName(this.ExtensionName);

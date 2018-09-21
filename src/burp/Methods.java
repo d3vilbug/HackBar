@@ -41,6 +41,7 @@ public class Methods {
         return MainMenu;
     }
     
+    
     public static String prompt_and_validate_input(String prompt, String str){
         String user_input = JOptionPane.showInputDialog(prompt, str);
         while(user_input.trim().equals("")){
@@ -56,5 +57,9 @@ public class Methods {
         System.arraycopy(modString, 0, newRequest, selectedIndex[0], modString.length);
         System.arraycopy(request, selectedIndex[1], newRequest, selectedIndex[0]+modString.length, request.length-selectedIndex[1]);
         return newRequest;
+    }
+    
+    public static void show_message(String str1, String str2){
+        JOptionPane.showMessageDialog(null, str1, str2, 0);
     }
 }

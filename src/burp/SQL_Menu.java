@@ -43,10 +43,6 @@ public class SQL_Menu extends JMenu{
     SQL_Menu(BurpExtender burp){
         this.setText("SQL Injection");
         this.myburp = burp;
-        this.Create_SQL_Menu();
-    }
-    
-    public void Create_SQL_Menu(){
         Methods.Create_Main_Menu(this, SQL_MenuItem, SQL_MenuItems, new SQLMenuItemListener(myburp));
     }
 }
@@ -149,7 +145,7 @@ class SQLMenuItemListener implements ActionListener {
                 break;
             case "Table Group Concat":
                 database = Methods.prompt_and_validate_input("Enter Database Name", "DATABASE()");
-                database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));
+                if (!database.toLowerCase().equals("database()")){ database = "0x" + String.format("%x", new BigInteger(1, database.getBytes()));}
                 selectedString = "(SELECT+GROUP_CONCAT(table_name+SEPARATOR+0x3c62723e)+FROM+INFORMATION_SCHEMA.TABLES+WHERE+TABLE_SCHEMA=" + database + ")";
                 break;
             case "Table One Shot":
