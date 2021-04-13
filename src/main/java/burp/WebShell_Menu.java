@@ -5,7 +5,6 @@
  */
 package burp;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;

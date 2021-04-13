@@ -26,7 +26,7 @@ public class SQL_Error extends JMenu {
         {"M-DIOS 1", "M-DIOS 2", "M-DIOS 3", "M-DIOS 4"},
         {"AEB-Get Version", "AEB-Get Tables"},
         {"DIOS 1", "DIOS 2", "DIOS 3", "DIOS 4", "DIOS 5", "DIOS 6", "DIOS 7", "DIOS 8", "DIOS 9"},
-        {"DQ-Get Version", "DQ-Get Database", "DQ-Get Tables", "DQ-Get Columns", "DQ-Get Data"},
+        {"DQ-Get Version", "DQ-Get Databases", "DQ-Get Tables", "DQ-Get Columns", "DQ-Get Data"},
         {"MS-Get Version", "MS-Get Database", "MS-Get User", "MSSQL DIOS"}
     };
     
