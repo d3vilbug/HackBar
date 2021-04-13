@@ -13,14 +13,14 @@
 
 ### How to Install
 
-	Download Jar 'https://github.com/d3vilbug/HackBar/releases/tag/1.0' and add in burpsuite
+	Download Latest Jar from https://github.com/d3vilbug/HackBar/releases/ and add in burpsuite
 
 <img src="https://i.imgur.com/0CP3iCM.gif" />
 
 ### Tested on
-- Burpsuite 1.7.36
+- Burpsuite 2021.4
 - Windows 10
-- xubuntu 18.04
+- Ubuntu & PopOS
 
 ### Upcoming Features/Modules
 - Ctrl + H (shortcut)
