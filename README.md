@@ -9,7 +9,6 @@
 
 ### Requirements
 - Burpsuite
-- Java
 
 ### How to Install
 
@@ -26,7 +25,7 @@
 - Ctrl + H (shortcut)
 - WAF bypass (SQLi)
 - Decoder/Encoder
-- Simulate Attack (Automatically test complete cheat sheet with one click)
+
 
 ### Greets
 - An0n 3xPloiTeR https://github.com/Anon-Exploiter/ for SQLi && XSS payloads 
