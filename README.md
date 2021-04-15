@@ -3,7 +3,7 @@
 [![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=gh&type=0.2&v=1.0&x2=0)](http://badge.fury.io/gh/boennemann%2Fbadges)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-**java based Burpsuite Plugin**
+### Usage
 
 <img src="https://i.imgur.com/rlHIJko.gif" />
 
